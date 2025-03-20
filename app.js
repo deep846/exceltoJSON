@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Make sure the 'uploads' directory exists
+// It will automaticly create a upload folder
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads");
 }
