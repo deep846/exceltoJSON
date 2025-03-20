@@ -39,8 +39,12 @@ app.post("/convert", upload.single("file"), (req, res) => {
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
 
+    /// This code is supported with a npm module called XLSX
+    /// tribute to https://www.npmjs.com/package/xlsx this is converting XLXS to JSON @SheetJS
+    ////////////////////////////////////////////////////////////
     // Convert sheet data to JSON
     const jsonData = XLSX.utils.sheet_to_json(worksheet);
+    ///////////////////////////////////////////////////////////
 
     // Save the JSON data to a file (overwriting the existing file)
     const jsonFilePath = path.join(__dirname, "data.json");
