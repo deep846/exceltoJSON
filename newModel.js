@@ -72,7 +72,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
     res.json(jsonData);
 
     // Clean up the uploaded file after processing
-    fs.unlinkSync(filePath);
+    // fs.unlinkSync(filePath);
   } catch (error) {
     console.error("Error reading or processing the file:", error);
     res.status(500).send("Error processing the file.");
