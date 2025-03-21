@@ -6,7 +6,7 @@ const path = require("path");
 
 // Initialize the express app
 const app = express();
-const port = 3004;
+const port = process.env.PORT || 3004;
 
 // Configure Multer to handle file uploads
 const storage = multer.diskStorage({
