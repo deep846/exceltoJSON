@@ -3,10 +3,14 @@ const multer = require("multer");
 const xlsx = require("xlsx");
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors"); // Import the CORS package
 
 // Initialize the express app
 const app = express();
 const port = process.env.PORT || 3004;
+
+// Enable CORS for all origins (any domain can access the API)
+app.use(cors()); // This will allow all origins
 
 // Configure Multer to handle file uploads
 const storage = multer.diskStorage({
@@ -72,7 +76,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
     res.json(jsonData);
 
     // Clean up the uploaded file after processing
-    // fs.unlinkSync(filePath);
+    fs.unlinkSync(filePath);
   } catch (error) {
     console.error("Error reading or processing the file:", error);
     res.status(500).send("Error processing the file.");
@@ -80,7 +84,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
 });
 
 // making get request for json file
-
 app.get("/result", (req, res) => {
   const filepath = path.join(__dirname + "/output_data.json");
   res.sendFile(filepath);
